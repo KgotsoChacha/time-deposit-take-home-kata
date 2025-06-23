@@ -1,5 +1,6 @@
-import { TimeDeposit } from '../TimeDeposit'
+import { TimeDeposit } from '../types/TimeDeposit'
 import { TimeDepositCalculator } from '../TimeDepositCalculator'
+import { PlanType } from '../types/Plan'
 
 describe('TimeDepositCalculator', () => {
   describe('Basic', () => {
@@ -77,5 +78,12 @@ describe('TimeDepositCalculator', () => {
     expect(plans[1].balance).toBe(2008.33)
     expect(plans[2].balance).toBe(3007.5)
     expect(plans[3].balance).toBe(4000)
+  })
+
+  test('Should not update balance for unknown plan type', () => {
+    const plans: TimeDeposit[] = [new TimeDeposit(20, 'gold' as PlanType, 5000, 100)]
+    const calc = new TimeDepositCalculator()
+    calc.updateBalance(plans)
+    expect(plans[0].balance).toBe(5000)
   })
 })

@@ -1,27 +1,20 @@
-import { TimeDeposit } from './TimeDeposit'
+import { TimeDeposit } from './types/TimeDeposit'
+import { StudentPlan, PremiumPlan, BasicPlan } from './PlanStrategy'
+import type { PlanType } from './types/Plan'
 
 export class TimeDepositCalculator {
+  private planStrategyMap: Record<PlanType, { calculate: (td: TimeDeposit) => number }> = {
+    student: new StudentPlan(),
+    premium: new PremiumPlan(),
+    basic: new BasicPlan(),
+  }
+
   public updateBalance(xs: TimeDeposit[]) {
-    for (let i = 0; i < xs.length; i++) {
-      let a = 0
-
-      if (xs[i].days > 30) {
-        if (xs[i].planType === 'student') {
-          if (xs[i].days < 366) {
-            a += (xs[i].balance * 0.03) / 12
-          }
-        } else if (xs[i].planType === 'premium') {
-          if (xs[i].days > 45) {
-            a += (xs[i].balance * 0.05) / 12
-          }
-        } else if (xs[i].planType === 'basic') {
-          a += (xs[i].balance * 0.01) / 12
-        }
-      }
-
+    for (let deposit of xs) {
+      const strategy = this.planStrategyMap[deposit.planType]
+      let a = strategy ? strategy.calculate(deposit) : 0
       const a2d = Math.round((a + Number.EPSILON) * 100) / 100
-
-      xs[i].balance += a2d
+      deposit.balance += a2d
     }
-  };
+  }
 }
