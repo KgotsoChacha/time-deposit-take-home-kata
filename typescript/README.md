@@ -115,3 +115,10 @@ To add a new migration run:
 ```sh
 npx prisma migrate dev --name <migration-name>
 ```
+
+### Clearing and seeding the database
+
+```sh
+npm run seed
+```
+

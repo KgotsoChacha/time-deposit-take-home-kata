@@ -77,6 +77,8 @@ export async function initializeDatabase() {
     console.log('Starting database initialization...');
 
     // Clear existing data (optional)
+    console.log('Clearing existing withdrawals...');
+    await prisma.withdrawal.deleteMany({});
     console.log('Clearing existing time deposits...');
     await prisma.timeDeposit.deleteMany({});
 

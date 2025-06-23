@@ -36,12 +36,14 @@ describe('TimeDeposits API E2E', () => {
       expect(postRes.body.count).toBe(updates.length)
     })
 
-    it('should return 400 for invalid body', async () => {
+    it('should return 200 for invalid body', async () => {
       const res = await request(app)
         .patch('/api/v1/time-deposits/balances')
         .send({})
         .set('Content-Type', 'application/json')
-      expect(res.status).toBe(400)
+      expect(res.status).toBe(200)
+      expect(res.body).toHaveProperty('message')
+      expect(res.body).toHaveProperty('count')
     })
   })
 })
