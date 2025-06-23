@@ -1,7 +1,14 @@
-import { TimeDeposit } from './TimeDeposit'
-import { TimeDepositCalculator } from './TimeDepositCalculator'
+import express from 'express'
+import apiV1Routes from './api/v1/routes'
+import { setupSwagger } from './docs/swagger'
 
-const calc = new TimeDepositCalculator()
-const plans: TimeDeposit[] = [new TimeDeposit('basic', 1234567.0, 45)]
-const interest = calc.updateBalance(plans)
-console.log({ interest })
+const app = express()
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+setupSwagger(app)
+
+app.use('/api/v1', apiV1Routes)
+
+export default app

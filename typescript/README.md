@@ -17,6 +17,41 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 This is optional you can choose to directly install node directly (node >= 16.0.0)
 
+## Folder Structure
+This section outlines the architecture and folder structure of the Time Deposit API application. The application follows a modular, scalable architecture pattern that separates concerns and promotes maintainability.
+
+```
+typescript/
+├── src/                 # Source code
+│   ├── api/             # API-specific code
+│        └── services/   # Business logic
+│   │   └── v1/          # Version 1 of the API
+│   │       ├── handlers/  # Request handlers
+│   │       ├── routes/       # Route definitions
+│   ├── config/          # Configuration files
+│   ├── db/              # Database-related code
+│   │   └── prisma/      # Prisma ORM
+│   ├── docs/            # API documentation
+│   │   └── swagger.ts   # Swagger configuration
+│   ├── models/          # Data models/types
+│   ├── tests/           # Test files
+│   ├── index.ts         # Express application setup
+│   └── server.ts        # Server startup logic
+├── prisma/              # Prisma schema and migrations
+└── [config files]       # TypeScript, Babel, etc.
+```
+
+## API Versioning and Documentation
+
+The API is versioned via the URL path (/api/v1/...). This allows for the implementation of new API versions while maintaining backward compatibility.
+
+### Swagger Documentation
+
+The API is documented using OpenAPI/Swagger which provides:
+- Interactive API documentation accessible at `/api-docs`
+- Testing capability directly from the documentation interface
+- Automatic documentation generation from JSDoc comments in route files
+
 ### Install node using nvm
 
 `nvm install 16.16.0`
@@ -72,3 +107,11 @@ npm start
    npx prisma migrate dev --name <migration-name>
    ```
 2. Use the generated client in your code as needed.
+
+### Updating the Database
+
+To add a new migration run:
+
+```sh
+npx prisma migrate dev --name <migration-name>
+```
