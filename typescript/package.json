@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "nodemon src/index.ts",
     "start": "ts-node src/index.ts",
-    "test": "jest src/tests/*.test.ts --watch"
+    "test": "jest src/tests/*.test.ts --watch",
+    "test:coverage": "jest src/tests/*.test.ts --coverage"
   },
   "engines": {
     "node": ">=16.0.0"

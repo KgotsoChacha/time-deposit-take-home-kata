@@ -10,3 +10,4 @@ package-lock.json
 .vscode/
 generated/
 yarn.lock
+coverage/
