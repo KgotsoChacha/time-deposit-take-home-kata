@@ -3,7 +3,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -11,16 +10,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum PlanType {
+  basic
+  premium
+  student
+}
+
 model TimeDeposit {
-  id        Int          @id @default(autoincrement())
-  planType  String
-  days      Int
-  balance   Decimal
+  id          Int          @id @default(autoincrement())
+  planType    PlanType
+  days        Int
+  balance     Decimal
   withdrawals Withdrawal[]
 }
 
 model Withdrawal {
-  id            Int      @id @default(autoincrement())
+  id            Int         @id @default(autoincrement())
   timeDeposit   TimeDeposit @relation(fields: [timeDepositId], references: [id])
   timeDepositId Int
   amount        Decimal
