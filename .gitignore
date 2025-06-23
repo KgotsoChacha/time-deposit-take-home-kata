@@ -8,3 +8,5 @@ __pycache__/
 .idea/
 package-lock.json
 .vscode/
+generated/
+yarn.lock

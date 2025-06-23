@@ -1,11 +1,7 @@
 {
-    "include": [
-      "./src/*"
-    ],
-    "compilerOptions": {
-      "lib": [
-        "esnext"
-      ],
-      "esModuleInterop": true
-    }
+  "include": ["./src/**/*.ts"],
+  "compilerOptions": {
+    "lib": ["esnext"],
+    "esModuleInterop": true
   }
+}
