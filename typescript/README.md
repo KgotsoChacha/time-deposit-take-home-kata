@@ -39,8 +39,36 @@ This is optional, you can choose to use `npm` itself.
 
 ### Test suite while watching
 
-`yarn test`
+```
+yarn test
+# or
+npm test
+```
 
 ### Run server
 
-`yarn start`
+```
+yarn start
+# or
+npm start
+```
+
+---
+
+## How to visualize the data
+
+### Run migrations
+
+`npx prisma migrate dev`
+
+### Open Prisma Studio (GUI)
+
+`npx prisma studio`
+
+### Updating the Database
+
+1. If you change `prisma/schema.prisma`, run:
+   ```sh
+   npx prisma migrate dev --name <migration-name>
+   ```
+2. Use the generated client in your code as needed.
