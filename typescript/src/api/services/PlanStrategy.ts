@@ -1,5 +1,5 @@
-import { Plan } from "./types/Plan"
-import { TimeDeposit } from "./types/TimeDeposit"
+import { Plan } from '../../models/Plan'
+import { TimeDeposit } from '../../models/TimeDeposit'
 
 export class StudentPlan implements Plan {
   calculate(td: TimeDeposit): number {
