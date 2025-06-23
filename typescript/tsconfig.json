@@ -2,6 +2,7 @@
   "include": ["./src/**/*.ts"],
   "compilerOptions": {
     "lib": ["esnext"],
+    "skipLibCheck": true,
     "esModuleInterop": true
   }
 }

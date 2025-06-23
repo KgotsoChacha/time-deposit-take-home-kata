@@ -27,7 +27,7 @@ describe('TimeDeposits API E2E', () => {
         balance: Number(d.balance) + 1,
       }))
       const postRes = await request(app)
-        .post('/api/v1/time-deposits/balances')
+        .patch('/api/v1/time-deposits/balances')
         .send(updates)
         .set('Content-Type', 'application/json')
       expect(postRes.status).toBe(200)
@@ -38,7 +38,7 @@ describe('TimeDeposits API E2E', () => {
 
     it('should return 400 for invalid body', async () => {
       const res = await request(app)
-        .post('/api/v1/time-deposits/balances')
+        .patch('/api/v1/time-deposits/balances')
         .send({})
         .set('Content-Type', 'application/json')
       expect(res.status).toBe(400)
